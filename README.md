@@ -1,0 +1,1 @@
+# jeremykwagh-receipt-processor-challenge
