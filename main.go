@@ -14,7 +14,7 @@ func main() {
 		AllowCredentials:true,
 		MaxAge: 300,
 		}
-		})
+	)
 
 	v1Router :=chi.NewRouter()
 
