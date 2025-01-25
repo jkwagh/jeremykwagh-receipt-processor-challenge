@@ -8,7 +8,12 @@ import (
 	"github.com/go-chi/cors"
 )
 
+var store *ReceiptStore
+
 func main() {
+
+	store = NewReceiptStore()
+
 	router := chi.NewRouter()
 
 	router.Use(cors.Handler(cors.Options{
@@ -23,6 +28,7 @@ func main() {
 	v1Router := chi.NewRouter()
 	v1Router.Get("/ready", handlerReadiness)
 	v1Router.Get("/err", handlerErr)
+	v1Router.Post("/receipts/process", handlerCreateReceipt)
 
 	router.Mount("/v1", v1Router)
 
