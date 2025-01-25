@@ -29,6 +29,7 @@ func main() {
 	v1Router.Get("/ready", handlerReadiness)
 	v1Router.Get("/err", handlerErr)
 	v1Router.Post("/receipts/process", handlerCreateReceipt)
+	v1Router.Get("/receipts/{id}/points", handlerGetReceipt)
 
 	router.Mount("/v1", v1Router)
 

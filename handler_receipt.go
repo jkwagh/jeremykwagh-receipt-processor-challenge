@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/go-chi/chi"
 	"github.com/google/uuid"
 )
 
@@ -52,4 +53,16 @@ func handlerCreateReceipt(w http.ResponseWriter, r *http.Request) {
 	}
 
 	respondWithJSON(w, 200, response{ID: receipt.ID.String()})
+}
+
+func handlerGetReceipt(w http.ResponseWriter, r *http.Request) {
+	receiptID := chi.URLParam(r, "id")
+
+	receipt, exists := store.Get(receiptID)
+	if !exists {
+		respondWithError(w, 404, "Receipt not found")
+		return
+	}
+
+	respondWithJSON(w, 201, receipt)
 }
