@@ -1,7 +1,9 @@
 package main
 
 import (
+	"math"
 	"strconv"
+	"strings"
 	"unicode"
 )
 
@@ -37,6 +39,22 @@ func handlerPoints(receipt Receipt) int {
 	itemsCount := len(receipt.Items)
 	pointsMult := itemsCount / 2
 	points += pointsMult * 5
+
+	//If the trimmed length of the item description is a multiple of 3,
+	//multiply the price by `0.2` and round up to the nearest integer. The result is the number of points earned.
+	for _, item := range receipt.Items {
+		trimmedLen := strings.TrimSpace(item.ShortDescription)
+		descriptionLen := len(trimmedLen)
+		itemPrice, err := strconv.ParseFloat(item.Price, 64)
+		if err != nil {
+			println("Error parsing item price")
+		} else {
+			if descriptionLen%3 == 0 {
+				multiplier := math.Ceil(itemPrice * 0.2)
+				points += int(multiplier)
+			}
+		}
+	}
 
 	return points
 }
