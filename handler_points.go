@@ -33,5 +33,10 @@ func handlerPoints(receipt Receipt) int {
 		}
 	}
 
+	//5 points for every two items on the receipt
+	itemsCount := len(receipt.Items)
+	pointsMult := itemsCount / 2
+	points += pointsMult * 5
+
 	return points
 }
