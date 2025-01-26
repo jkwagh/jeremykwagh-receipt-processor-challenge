@@ -56,5 +56,11 @@ func handlerPoints(receipt Receipt) int {
 		}
 	}
 
+	//6 points if the day in the purchase date is odd
+	purchaseDay := receipt.PurchaseDate.Day()
+	if purchaseDay%2 != 0 {
+		points += 6
+	}
+
 	return points
 }
