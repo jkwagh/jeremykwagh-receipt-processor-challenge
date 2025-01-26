@@ -19,6 +19,7 @@ func handlerPoints(receipt Receipt) int {
 	}
 
 	//50 points if the total is a round dollar amount with no cents.
+	//25 points if the total is a multiple of '0.25'
 	total, err := strconv.ParseFloat(receipt.Total, 64)
 	if err != nil {
 		println("Error parsing receipt total")
@@ -26,6 +27,9 @@ func handlerPoints(receipt Receipt) int {
 		cents := int(total * 100)
 		if cents%100 == 0 {
 			points += 50
+		}
+		if cents%25 == 0 {
+			points += 25
 		}
 	}
 
