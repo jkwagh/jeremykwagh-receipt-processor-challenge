@@ -50,9 +50,7 @@ func handlerCreateReceipt(w http.ResponseWriter, r *http.Request) {
 		Points:       32,
 	}
 
-	handlerPoints(receipt)
-
-	// receipt.Points = int32(receiptPoints)
+	receipt.Points = int32(handlerPoints(receipt))
 
 	//Save new receipt to memory using Add function from store.go fle
 	store.Add(receipt)
