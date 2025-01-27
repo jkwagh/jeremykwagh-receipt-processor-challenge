@@ -1,6 +1,9 @@
 # Jeremiah Kwagh - Receipt Processor Challenge
 
-Note: This is the submission by Jeremiah Kwagh of the Receipt Processor Challenge for Fetch.
+## Note:
+- This is the submission by Jeremiah Kwagh of the Receipt Processor Challenge for Fetch.
+- API testing was performed using Postman to verify endpoint functionality and response accuracy. Test cases included example receipts found in the challenge instructions as well as various other receipt scenarios to ensure proper point calculations.
+- Receipts are stored in memory and will be cleared when the server restarts
 
 This program was built using Go and provides 2 endpoints:
 - A POST end point to process a receipt and generate a new unique ID
@@ -36,5 +39,6 @@ Example request body:
 
 ### Get Points
 ```
-
-GET /v1/receipts/{id}/points
+GET /v1/receipts/{id}/points`
+```
+Returns the total points awarded for a requested receipt.

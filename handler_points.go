@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"math"
 	"strconv"
 	"strings"
@@ -22,7 +21,6 @@ func handlerPoints(receipt Receipt) int {
 			count++
 		}
 	}
-	fmt.Printf("+%v points for retailer name\n", count)
 
 	//50 points if the total is a round dollar amount with no cents.
 	//25 points if the total is a multiple of '0.25'
@@ -32,11 +30,9 @@ func handlerPoints(receipt Receipt) int {
 	} else {
 		cents := int(total * 100)
 		if cents%100 == 0 {
-			fmt.Println("+50 points for round dollar")
 			points += 50
 		}
 		if cents%25 == 0 {
-			fmt.Println("+25 points for multiple of 0.25")
 			points += 25
 		}
 	}
@@ -44,7 +40,6 @@ func handlerPoints(receipt Receipt) int {
 	//5 points for every two items on the receipt
 	itemsCount := len(receipt.Items)
 	pointsMult := itemsCount / 2
-	fmt.Printf("+%v points for every 2 items\n", pointsMult*5)
 	points += pointsMult * 5
 
 	//If the trimmed length of the item description is a multiple of 3,
@@ -58,7 +53,6 @@ func handlerPoints(receipt Receipt) int {
 		} else {
 			if descriptionLen%3 == 0 {
 				multiplier := math.Ceil(itemPrice * 0.2)
-				fmt.Printf("+%v for item description\n", multiplier)
 				points += int(multiplier)
 			}
 		}
@@ -67,7 +61,6 @@ func handlerPoints(receipt Receipt) int {
 	//6 points if the day in the purchase date is odd
 	purchaseDay := receipt.PurchaseDate.Day()
 	if purchaseDay%2 != 0 {
-		fmt.Println("+6 for day")
 		points += 6
 	}
 
@@ -75,10 +68,8 @@ func handlerPoints(receipt Receipt) int {
 	purchaseTime := receipt.PurchaseTime
 	hour := purchaseTime.Hour()
 	if hour >= 14 && hour <= 16 {
-		fmt.Println("+10 for time")
 		points += 10
 	}
 
-	fmt.Println(points)
 	return points
 }
