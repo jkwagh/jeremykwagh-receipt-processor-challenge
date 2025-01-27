@@ -50,6 +50,7 @@ func handlerCreateReceipt(w http.ResponseWriter, r *http.Request) {
 		Points:       32,
 	}
 
+	//Calculate receipt points and assign to receipt
 	receipt.Points = int32(handlerPoints(receipt))
 
 	//Save new receipt to memory using Add function from store.go fle
@@ -75,12 +76,12 @@ func handlerGetReceipt(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	//Pull receipt points for response
 	type response struct {
 		Points int `json:"points"`
 	}
-
 	points := int(receipt.Points)
 
-	//Response formatted as JSON
+	//Response converted to JSON with respondWithJSON
 	respondWithJSON(w, 201, response{Points: points})
 }
