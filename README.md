@@ -39,6 +39,6 @@ Example request body:
 
 ### Get Points
 ```
-GET /v1/receipts/{id}/points`
+GET /v1/receipts/{id}/points
 ```
 Returns the total points awarded for a requested receipt.
