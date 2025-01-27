@@ -25,13 +25,10 @@ func main() {
 		MaxAge:           300,
 	}))
 
-	v1Router := chi.NewRouter()
-	v1Router.Get("/ready", handlerReadiness)
-	v1Router.Get("/err", handlerErr)
-	v1Router.Post("/receipts/process", handlerCreateReceipt)
-	v1Router.Get("/receipts/{id}/points", handlerGetReceipt)
-
-	router.Mount("/v1", v1Router)
+	router.Get("/ready", handlerReadiness)
+	router.Get("/err", handlerErr)
+	router.Post("/receipts/process", handlerCreateReceipt)
+	router.Get("/receipts/{id}/points", handlerGetReceipt)
 
 	srv := &http.Server{
 		Handler: router,
