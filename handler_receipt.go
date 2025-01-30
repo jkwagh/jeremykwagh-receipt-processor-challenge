@@ -47,7 +47,7 @@ func handlerCreateReceipt(w http.ResponseWriter, r *http.Request) {
 		PurchaseTime: purchaseTime,
 		Items:        params.Items,
 		Total:        params.Total,
-		Points:       32,
+		Points:       0,
 	}
 
 	//Calculate receipt points and assign to receipt
